@@ -12,7 +12,7 @@ public class KafkaProducer extends Thread{
 		kafkaProducer.start();
 	}
 	  private final kafka.javaapi.producer.Producer<Integer, String> producer;
-	  private final String topic="first";
+	  private final String topic="second";
 	  private final Properties props = new Properties();
 	  public KafkaProducer()
 	  {
@@ -24,12 +24,10 @@ public class KafkaProducer extends Thread{
 	  @Override
 	  public void run() {
 		  System.out.println("run");
-	    int messageNo = 1;
-	    while(true)
-	    {
-	      String messageStr = new String("Message_" + messageNo);
-	      producer.send(new KeyedMessage<Integer, String>(topic, messageStr));
-	      messageNo++;
-	    }
+	      String messageNo = "new String5";	  
+	      String messageStr = new String("Message" + " " +messageNo);
+	      producer.send(new KeyedMessage<Integer, String>(topic, messageStr));	 
+	      System.out.println("Message Send");
+	    
 	  }
 }
